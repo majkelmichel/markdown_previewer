@@ -1,12 +1,23 @@
 import React from "react";
-import marked_1 from "marked/lib/marked.esm";
 import {Col, Container, Row} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faExpandArrowsAlt} from "@fortawesome/free-solid-svg-icons";
 
+const marked = require('marked');
+
+marked.setOptions({
+    breaks: true
+})
+
 class Previewer extends React.Component {
+    componentDidMount() {
+        // renders example text from editor
+        document.getElementById('preview').innerHTML = marked(this.props.textToConvert);
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
-        document.getElementById('previewer').innerHTML = marked_1(this.props.textToConvert);
+        // renders text from editor
+        document.getElementById('preview').innerHTML = marked(this.props.textToConvert);
     }
 
     render() {
@@ -14,7 +25,6 @@ class Previewer extends React.Component {
             <div id='previewer-outer' style={{
                 margin: "5vh auto",
                 width: this.props.previewerWidth,
-                height: this.props.previewerHeight,
                 display: this.props.previewerVisibility
             }}>
                 <Container fluid='md' id='previewer-container' className='Previewer-container'>
@@ -32,7 +42,7 @@ class Previewer extends React.Component {
                             </Row>
                         </Container>
                     </Row>
-                    <div id='previewer' />
+                    <div id='preview' />
                 </Container>
             </div>
         )

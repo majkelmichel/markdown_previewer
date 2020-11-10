@@ -44,7 +44,6 @@ const defaultState = {
     editorVisibility: 'block',
     previewerIsFullscreen: false,
     previewerWidth: '60vw',
-    previewerHeight: '50vh',
     previewerVisibility: 'block',
     textToConvert: ''
 };
@@ -74,7 +73,6 @@ const basicReducer = (state = defaultState, action) => {
                 return {
                     ...state,
                     previewerIsFullscreen: !state.previewerIsFullscreen,
-                    previewerHeight: '50vh',
                     previewerWidth: '60vw',
                     editorVisibility: 'block'
                 }
@@ -82,7 +80,6 @@ const basicReducer = (state = defaultState, action) => {
                 return {
                     ...state,
                     previewerIsFullscreen: !state.previewerIsFullscreen,
-                    previewerHeight: '90vh',
                     previewerWidth: '90vw',
                     editorVisibility: 'none'
                 }
